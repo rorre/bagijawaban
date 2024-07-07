@@ -724,7 +724,7 @@ uvicorn = "^0.30.1"
 type = "git"
 url = "https://github.com/rorre/likulau.git"
 reference = "HEAD"
-resolved_reference = "15fd2089c403440db8e4a3797089294a65865c07"
+resolved_reference = "272d90df7bca4685e76db327fcbd8782daf81a75"
 
 [[package]]
 name = "markdown-it-py"
