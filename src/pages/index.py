@@ -20,7 +20,7 @@ def page() -> e.HTMLElement:
             ),
             (
                 e.a(
-                    props={"href": "/auth/login"},
+                    props={"class_": "mb-4", "href": "/auth/login"},
                     children=e.button(
                         props={"class_": "btn-info btn"},
                         children="Log in with SSO",
