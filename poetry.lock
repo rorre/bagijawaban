@@ -711,7 +711,7 @@ description = ""
 optional = false
 python-versions = "^3.12"
 files = []
-develop = true
+develop = false
 
 [package.dependencies]
 asyncer = "^0.0.7"
@@ -721,8 +721,10 @@ typer = "^0.12.3"
 uvicorn = "^0.30.1"
 
 [package.source]
-type = "directory"
-url = "../likulau"
+type = "git"
+url = "https://github.com/rorre/likulau.git"
+reference = "HEAD"
+resolved_reference = "15fd2089c403440db8e4a3797089294a65865c07"
 
 [[package]]
 name = "markdown-it-py"
@@ -2092,4 +2094,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "acd91ce6862490b8c179e6b09928628eb929a8e7f71c722cc743f133c49a7131"
+content-hash = "a3fb86a90990e40166a8348928a09a23c79cef093eacb29fdceb9c8084b36290"
