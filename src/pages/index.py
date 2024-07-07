@@ -1,6 +1,5 @@
 import liku as e
 
-from src.providers.auth import use_current_user
 from src.components.layout import Layout
 
 
@@ -9,7 +8,6 @@ def layout(_props: None, children: e.HTMLElement):
 
 
 def page() -> e.HTMLElement:
-    current_user = use_current_user()
     return e.div(
         props={"class_": "prose py-8 mx-auto"},
         children=[
@@ -17,17 +15,6 @@ def page() -> e.HTMLElement:
             e.p(
                 children="A place where everyone in CSUI can share their past assignments. Everyone is welcomed to contribute! "
                 "Public can see all the assignments, whereas UI students are able to submit and see submissions by other people."
-            ),
-            (
-                e.a(
-                    props={"class_": "mb-4", "href": "/auth/login"},
-                    children=e.button(
-                        props={"class_": "btn-info btn"},
-                        children="Log in with SSO",
-                    ),
-                )
-                if not current_user
-                else None
             ),
             e.div(
                 props={"class_": "rounded-lg bg-neutral"},
