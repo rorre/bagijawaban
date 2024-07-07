@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "bagijawaban"
+version = "0.1.0"
+description = ""
+authors = ["Rendy Arya Kemal <renrror@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+likulau = {path = "../likulau", develop = true}
+python-ulid = "^2.7.0"
+httpx = "^0.27.0"
+xmltodict = "^0.13.0"
+itsdangerous = "^2.2.0"
+mistune = "^3.0.2"
+aiobotocore = "^2.13.1"
+python-multipart = "^0.0.9"
+libsql-client = "^0.3.1"
+
+
+[tool.poetry.group.dev.dependencies]
+asyncpg-stubs = "^0.29.1"
+watchfiles = "^0.22.0"
+types-aiobotocore = {extras = ["essential"], version = "^2.13.1"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
