@@ -5,27 +5,34 @@ from src.components.layout import Layout
 from src.components.button import LinkButton
 from src.components.card import Card
 from src.db import query
-from src.models import Assignment
+from src.models import Assignment, Course
+
+from starlette.exceptions import HTTPException
 from starlette.requests import Request
 
 
 @dataclass
 class AssignmentPageProps:
-    course_id: str
+    course: Course
     assignments: list[Assignment]
 
 
-layout = Layout
+def layout(props: AssignmentPageProps, children: e.HTMLElement):
+    return Layout(f"Assignments for {props.course.name}", children)
 
 
 async def get_ssr_props(request: Request) -> AssignmentPageProps:
     course_id = request.path_params["course_id"]
+    courses = await query("SELECT * FROM courses WHERE id = ?", [course_id], cls=Course)
     assignments = await query(
         "SELECT * FROM assignments WHERE course_id = ?",
         [course_id],
         cls=Assignment,
     )
-    return AssignmentPageProps(course_id, assignments)
+
+    if not courses:
+        raise HTTPException(404, "Not found")
+    return AssignmentPageProps(courses[0], assignments)
 
 
 def page(props: AssignmentPageProps):
@@ -41,7 +48,7 @@ def page(props: AssignmentPageProps):
             Card(
                 assignment.name,
                 e.p(children=description),
-                LinkButton(f"/course/{props.course_id}/assignment/{assignment.id}", "Detail"),
+                LinkButton(f"/course/{props.course.id}/assignment/{assignment.id}", "Detail"),
                 class_="bg-neutral",
             )
         )

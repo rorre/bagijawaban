@@ -13,7 +13,11 @@ from src.db import query
 
 import mistune
 
-layout = Layout
+
+def layout(props: Assignment | None, children: e.HTMLElement):
+    if not props:
+        return
+    return Layout(props.name, children)
 
 
 async def get_ssr_props(request: Request) -> Assignment | None:
@@ -57,7 +61,7 @@ async def page(props: Assignment | None):
                         children=(
                             [
                                 SubmitSolution(props.id),
-                                (await SolutionsList(props.id)),
+                                await SolutionsList(props.id),
                             ]
                             if current_user
                             else Card(

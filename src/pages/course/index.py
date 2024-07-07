@@ -16,7 +16,9 @@ class CourseProps:
     courses: ResultSet
 
 
-layout = Layout
+def layout(props: CourseProps, children: e.HTMLElement):
+    return Layout("Course List", children)
+
 
 
 async def get_ssr_props(request: Request) -> CourseProps:

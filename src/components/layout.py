@@ -35,7 +35,7 @@ def Navbar():
     )
 
 
-def Layout(children: e.HTMLElement):
+def Layout(title: str, children: e.HTMLElement):
     flashes = use_flash()
     return e.html(
         children=[
@@ -48,7 +48,7 @@ def Layout(children: e.HTMLElement):
                             "content": "width=device-width, initial-scale=1.0",
                         }
                     ),
-                    e.title(children="BagiJawaban"),
+                    e.title(children=f"BagiJawaban -- {title}"),
                     e.link(
                         props={
                             "href": "/static/css/style.css",

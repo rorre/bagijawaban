@@ -3,7 +3,9 @@ import liku as e
 from src.providers.auth import use_current_user
 from src.components.layout import Layout
 
-layout = Layout
+
+def layout(_props: None, children: e.HTMLElement):
+    return Layout("Index", children)
 
 
 def page() -> e.HTMLElement:
