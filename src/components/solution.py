@@ -57,7 +57,10 @@ def SolutionCollapse(solution: Row):
         summary=str(solution["user_name"]),
         content=e.div(
             children=[
-                e.p(props={"class_": "pb-2"}, children=str(solution["notes"]) or "No details provided"),
+                e.p(
+                    props={"class_": "pb-2 whitespace-pre-line"},
+                    children=str(solution["notes"]) or "No details provided",
+                ),
                 LinkButton(href=str(solution["url"]), label="View Solution", class_="btn-sm"),
             ],
         ),
