@@ -13,7 +13,7 @@ from src.s3 import upload_file
 
 MD_TEMPLATE = """
 ---
-title: TODO
+title: {title}
 description: TODO
 ---
 
@@ -27,13 +27,16 @@ async def main():
 
     for fpath in Path(sys.argv[1]).glob("**/*.pdf"):
         print(">", fpath)
+        if fpath.with_suffix(".md").exists():
+            continue
+
         path = sys.argv[2] + "/" + fpath.name
         with open(fpath, "rb") as f:
             await upload_file(path, f)
 
         url = env("S3_BUCKET_URL") + path
         with open(fpath.with_suffix(".md"), "w") as fw:
-            fw.write(MD_TEMPLATE.format({"url": url}))
+            fw.write(MD_TEMPLATE.format(url=url, title=fpath.stem))
 
 
 asyncio.run(main())
