@@ -2,14 +2,13 @@ from likulau.hooks import use_request
 
 from starlette.exceptions import HTTPException
 from starlette.datastructures import UploadFile
-from types_aiobotocore_s3 import S3Client
 
 from likulau.env import env
 from likulau.routes import methods
 from ulid import ULID
 from src.providers.auth import use_current_user
 from src.db import get_db_conn
-from src.s3 import s3_client
+from src.s3 import upload_file
 from src.utils import random_str
 from starlette.responses import RedirectResponse
 
@@ -39,9 +38,7 @@ async def page():
             raise HTTPException(400, "File too big")
 
         path = f"submissions/{random_str(8)}_{f.filename}"
-        async with s3_client() as client:
-            client: S3Client
-            await client.put_object(Bucket=env("BUCKET_NAME"), Key=path, Body=f.file)
+        await upload_file(path, f.file)
 
     db = await get_db_conn()
     await db.execute(
