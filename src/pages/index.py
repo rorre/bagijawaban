@@ -41,8 +41,9 @@ def page() -> e.HTMLElement:
                     ),
                     e.p(
                         props={"class_": "px-4"},
-                        children="We are looking for volunteers from any generation (regardless of whether you are 2022, 2021, or above) to"
-                        "convert all of the lab assignments during your time to markdown, so we can publish it in this site!",
+                        children="We are looking for volunteers from any generation (regardless of whether you are 2022, 2021, or above) to "
+                        "submit their assignments file (PDF accepted!), so we can publish it in this site! Optionally, "
+                        "we also need volunteers to convert all PDF asssignments to markdown so we can view it nicely.",
                     ),
                     e.p(
                         props={"class_": "px-4 pb-4"},
