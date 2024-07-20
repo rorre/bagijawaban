@@ -19,6 +19,7 @@ class Course:
 class Assignment:
     id: str
     name: str
+    short_description: str
     description: str
     course_id: str
 

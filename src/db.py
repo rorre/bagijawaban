@@ -40,6 +40,7 @@ async def setup_database():
         CREATE TABLE IF NOT EXISTS assignments (
             id TEXT PRIMARY KEY,
             name TEXT NOT NULL,
+            short_description TEXT,
             description TEXT,
             course_id TEXT NOT NULL,
             FOREIGN KEY (course_id) REFERENCES courses(id)

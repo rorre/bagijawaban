@@ -19,8 +19,14 @@ async def main():
             post = frontmatter.load(f)
 
         await db.execute(
-            "INSERT INTO assignments (id, name, description, course_id) VALUES (?, ?, ?, ?)",
-            [str(ULID()), cast(str, post.metadata["title"]), post.content, sys.argv[2]],
+            "INSERT INTO assignments (id, name, description, short_description, course_id) VALUES (?, ?, ?, ?)",
+            [
+                str(ULID()),
+                cast(str, post.metadata["title"]),
+                post.content,
+                cast(str, post.metadata["description"]),
+                sys.argv[2],
+            ],
         )
 
 

@@ -38,16 +38,10 @@ async def get_ssr_props(request: Request) -> AssignmentPageProps:
 def page(props: AssignmentPageProps):
     cards = []
     for assignment in props.assignments:
-        description = assignment.description
-        try:
-            description = description[: assignment.description.index("\n")]
-        except ValueError:
-            pass
-
         cards.append(
             Card(
                 assignment.name,
-                e.p(children=description),
+                e.p(children=assignment.short_description),
                 LinkButton(f"/course/{props.course.id}/assignment/{assignment.id}", "Detail"),
                 class_="bg-neutral",
             )
